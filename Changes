@@ -1,6 +1,7 @@
 Revision history for Dist-Zilla-Plugin-GitIgnore
 
 {{$NEXT}}
+          - Fix skip_gitignore_override option
 
 0.002     2025-07-20 19:47:02+02:00 Europe/Brussels
           - Improve patterns for distribution tarball / directory

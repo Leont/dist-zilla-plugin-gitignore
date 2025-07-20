@@ -34,7 +34,7 @@ has extras => (
 has skip_gitignore_override => (
 	is      => 'ro',
 	isa     => Bool,
-	default => !!1,
+	default => !!0,
 );
 
 has skip_defaults => (
