@@ -2,7 +2,7 @@ package Dist::Zilla::Plugin::GitIgnore;
 
 use Moose;
 with qw/Dist::Zilla::Role::FileGatherer/;
-use MooseX::Types::Moose qw/ArrayRef Str/;
+use MooseX::Types::Moose qw/ArrayRef Str Bool/;
 
 use experimental 'signatures';
 
@@ -31,9 +31,18 @@ has extras => (
 	},
 );
 
+has skip_defaults => (
+	is      => 'ro',
+	isa     => Bool,
+	default => !!0,
+);
+
 sub gather_files($self) {
-	my $name = $self->zilla->name;
-	my @patterns = ('/.build/', "/$name-*/", "/$name-*.tar.gz");
+	my @patterns;
+	if (not $self->skip_defaults) {
+		my $name = $self->zilla->name;
+		push @patterns, '/.build/', "/$name-*/", "/$name-*.tar.gz";
+	}
 	push @patterns, $self->extras;
 
 	my $payload = join '', map { "$_\n" } @patterns;
@@ -67,3 +76,7 @@ This is the list of extra patterns for the gitignore file.
 =attr filename
 
 This sets the filename. It defaults to F<.gitignore> and probably shouldn't be changed.
+
+=attr skip_defaults
+
+If enabled, it won't add any default patterns. This is disabled by default.
