@@ -68,4 +68,4 @@ This is default entry for the initial version. This could be something like C<In
 
 =attr indent
 
-This is the indentation used for the initial line
+This is the indentation used for the initial line, it defaults to C<10>, to match the default indentation of C<NextRelease>. This should only be changed if you override the C<format> argument to C<NextRelease>.
