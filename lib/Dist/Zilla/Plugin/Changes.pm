@@ -53,7 +53,7 @@ sub gather_files($self) {
 In your profile.ini
 
  [Changes]
- initial = Initial release
+ initial = - Initial release
 
 =head1 DESCRIPTION
 
@@ -65,7 +65,7 @@ This sets the filename of the changelog. It defaults to C<Changes>.
 
 =attr initial
 
-This is default entry for the initial version. This could be something like C<Initial release>. If not set, no such line is added.
+This is default entry for the initial version. This could be something like C<- Initial release>. If not set, no such line is added.
 
 =attr indent
 
