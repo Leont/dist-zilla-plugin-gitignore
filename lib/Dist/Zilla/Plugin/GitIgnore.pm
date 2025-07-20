@@ -32,13 +32,13 @@ has extras => (
 );
 
 sub gather_files($self) {
-	my @patterns = '.build';
-	push @patterns, $self->zilla->name . "-*";
+	my $name = $self->zilla->name;
+	my @patterns = ('/.build/', "/$name-*/", "/$name-*.tar.gz");
 	push @patterns, $self->extras;
-	my $payload = join '', map { "$_\n" } @patterns;
 
+	my $payload = join '', map { "$_\n" } @patterns;
 	$self->add_file(Dist::Zilla::File::InMemory->new(
-		name => $self->filename,
+		name    => $self->filename,
 		content => $payload,
 	));
 
@@ -58,7 +58,7 @@ In your profile.ini
 
 =head1 DESCRIPTION
 
-This is a minting plugin to add a C<.gitignore> file. By default it ignores only two things that L<Dist::Zilla> itself generates: the F<.build> directory, and any file starting with C<"$dist_name-"> (e.g. the tarball that C<Dist::Zilla> produces). More patterns can be added using the C<extra> argument.
+This is a minting plugin to add a C<.gitignore> file. By default it ignores only two things that L<Dist::Zilla> itself generates: the F<.build/> directory, and any directory or C<.tar.gz> file starting with C<"$dist_name-"> (e.g. the tarball that C<Dist::Zilla> produces). More patterns can be added using the C<extra> argument.
 
 =attr extras
 
