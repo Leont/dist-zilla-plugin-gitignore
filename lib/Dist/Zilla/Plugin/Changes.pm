@@ -53,6 +53,7 @@ sub gather_files($self) {
 In your profile.ini
 
  [Changes]
+ initial = Initial release
 
 =head1 DESCRIPTION
 
